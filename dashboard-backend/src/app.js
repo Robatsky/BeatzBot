@@ -6,6 +6,8 @@ const passport = require('passport');
 const session = require('express-session');
 const mongoose = require('mongoose');
 const Store = require('connect-mongo')(session);
+const cors = require('cors');
+
 
 const app = express();
 const PORT = process.env.PORT || 4242;
@@ -18,11 +20,15 @@ app.use(session({
     cookie: {
         maxAge: 60000 * 60 * 24,
     },
-    resave: true,
-    saveUninitialized: true,
+    resave: false,
+    saveUninitialized: false,
     store: new Store({mongooseConnection: mongoose.connection})
 }))
 
+app.use(cors({
+    origin: ['http://localhost:3000'],
+    credentials: true
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 
