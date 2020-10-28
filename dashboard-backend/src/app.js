@@ -7,11 +7,13 @@ const session = require('express-session');
 const mongoose = require('mongoose');
 const Store = require('connect-mongo')(session);
 const cors = require('cors');
-
+const expressOasGenerator = require('express-oas-generator');
 
 const app = express();
 const PORT = process.env.PORT || 4242;
 const routes = require('./routes');
+
+expressOasGenerator.init(app, {});
 
 mongoose.connect('mongodb://localhost/beatzbot', { useNewUrlParser: true, useUnifiedTopology: true});
 
