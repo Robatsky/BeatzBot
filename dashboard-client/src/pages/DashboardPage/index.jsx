@@ -7,19 +7,25 @@ export function DashboardPage ( {history} ) {
 
     const [user, setUser, loading] = useUser(errorCallback);
     const [prefix, setPrefix] = useState("");
+    const [log, setLog] = useState([]);
 
     const submitPrefix = async (event) => {
         event.preventDefault();
-        const result = await fetch('http://localhost:3001/api/discord/guilds/478699121499308032/prefix', {
-            method: "PUT",
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-            },
-            body: `prefix=${encodeURIComponent(prefix)}`,
-            credentials: 'include'
-        });
-        console.log(result);
-        console.log(await result.json());
+        try {
+            const result = await fetch('http://localhost:3001/api/discord/guilds/478699121499308032/prefix', {
+                method: "PUT",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+                },
+                body: `prefix=${encodeURIComponent(prefix)}`,
+                credentials: 'include'
+            });
+            console.log(result);
+            const {msg} = await result.json();
+            setLog([msg]);
+        } catch (err) {
+            setLog([err]);
+        }
     }
 
     return (
@@ -33,6 +39,7 @@ export function DashboardPage ( {history} ) {
                     </form>
                 </div>
             }
+            { log.map(e => <div key={{e}}>{e}</div>)}
         </>
     )
 }
