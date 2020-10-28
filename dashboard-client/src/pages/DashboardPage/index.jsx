@@ -1,5 +1,6 @@
 import React, {useCallback, useState} from 'react';
 import {useUser} from '../../hooks/UserHook';
+import {updatePrefix} from '../../api/api';
 
 export function DashboardPage ( {history} ) {
 
@@ -12,14 +13,7 @@ export function DashboardPage ( {history} ) {
     const submitPrefix = async (event) => {
         event.preventDefault();
         try {
-            const result = await fetch('http://localhost:3001/api/discord/guilds/478699121499308032/prefix', {
-                method: "PUT",
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-                },
-                body: `prefix=${encodeURIComponent(prefix)}`,
-                credentials: 'include'
-            });
+            const result = await updatePrefix("478699121499308032", prefix);
             console.log(result);
             const {msg} = await result.json();
             setLog([msg]);

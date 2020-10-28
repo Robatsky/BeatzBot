@@ -1,0 +1,23 @@
+@import 'styles/_colors.scss';
+
+body {
+  margin: 0;
+  padding: 0;
+
+  font-family: 'Trebuchet MS';
+
+  box-sizing: border-box;
+  text-decoration: none;
+
+  background-color: $background-color;
+  color: white;
+
+  font-weight: 400;
+  line-height: 1.5;
+
+  min-height: 100%;
+}
+
+#root {
+  min-height: 100%;
+}

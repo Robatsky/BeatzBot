@@ -2,11 +2,11 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import { LandingPage, DashboardPage, MenuPage } from './pages';
-import './App.css';
+import './App.scss';
 
 function App() {
   return (
-    <div className="App">
+    <div className="page-wrapper">
       <Switch>
         <Route path="/" exact={true} component={LandingPage}></Route>
         <Route path="/dashboard" exact={true} component={DashboardPage}></Route>
