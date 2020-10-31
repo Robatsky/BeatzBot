@@ -1,11 +1,9 @@
 import React, { useCallback } from 'react';
-import { useUser } from '../../hooks/UserHook';
 
 export function MenuPage ( { history } ) {
     
-    const errorCallback = useCallback( error => history.push('/'), [history]);
-    const [user, setUser, loading] = useUser( errorCallback );
-
+    const loading = false;
+    
     return (
         <>
             { loading && <span>Loading</span>}

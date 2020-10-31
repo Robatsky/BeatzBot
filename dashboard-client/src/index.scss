@@ -1,12 +1,17 @@
 @import 'styles/_colors.scss';
 
-body {
+
+*,
+::after,
+::before {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
 
+body {
   font-family: 'Trebuchet MS';
 
-  box-sizing: border-box;
   text-decoration: none;
 
   background-color: $background-color;

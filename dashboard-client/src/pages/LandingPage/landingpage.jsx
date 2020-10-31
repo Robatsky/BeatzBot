@@ -2,7 +2,10 @@ import React from 'react';
 import './index.scss';
 
 export function LandingPage ( props ) {
-    const login = () => window.location.href = 'http://localhost:3001/api/auth/discord';
+    const login = () =>{
+        //  
+        
+    };
 
     return (
         <>

@@ -1,18 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Switch, Route } from 'react-router-dom';
-
 import { LandingPage, DashboardPage, MenuPage } from './pages';
+
+import {Navigation} from './molecules';
 import './App.scss';
 
-function App() {
+function App( { history }) {
+
+  const [ user, setUser ] = useState({ user: {}});
+
   return (
-    <div className="page-wrapper">
-      <Switch>
-        <Route path="/" exact={true} component={LandingPage}></Route>
-        <Route path="/dashboard" exact={true} component={DashboardPage}></Route>
-        <Route path="/menu" exact={true} component={MenuPage}></Route>
-      </Switch>
-    </div>
+    <>
+      <Navigation />
+      <div className="page-wrapper">
+          <Switch>
+            <Route path="/" exact={true} component={LandingPage} />
+            <Route  path="/dashboard" exact={true} component={DashboardPage} />
+            <Route path="/menu" exact={true} component={MenuPage} />
+          </Switch>
+      </div>
+      </>
   );
 }
 

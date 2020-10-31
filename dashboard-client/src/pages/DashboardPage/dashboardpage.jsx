@@ -1,12 +1,8 @@
-import React, {useCallback, useState} from 'react';
-import {useUser} from '../../hooks/UserHook';
+import React, {useState} from 'react';
 import {updatePrefix} from '../../api/api';
 
-export function DashboardPage ( {history} ) {
+export function DashboardPage ( {history, loading} ) {
 
-    const errorCallback = useCallback( error => history.push('/'), [history]);
-
-    const [user, setUser, loading] = useUser(errorCallback);
     const [prefix, setPrefix] = useState("");
     const [log, setLog] = useState([]);
 
@@ -14,12 +10,15 @@ export function DashboardPage ( {history} ) {
         event.preventDefault();
         try {
             const result = await updatePrefix("478699121499308032", prefix);
-            console.log(result);
             const {msg} = await result.json();
             setLog([msg]);
         } catch (err) {
             setLog([err]);
         }
+    }
+
+    const logout = () => {
+        
     }
 
     return (
@@ -31,6 +30,7 @@ export function DashboardPage ( {history} ) {
                         <input id="prefix" placeholder="?" onChange={ (event) => setPrefix(event.target.value)} />
                         <button type="submit">Submit</button>
                     </form>
+                    <button type="button" onClick={logout}>Logout</button>
                 </div>
             }
             { log.map(e => <div key={{e}}>{e}</div>)}

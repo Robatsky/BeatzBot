@@ -1,0 +1,24 @@
+@import '../../styles/colors';
+
+button.button.button-cta {
+    padding: .8em 1em;
+    background-color: $primary-color;
+
+    border: none;
+    border-radius: 5px;
+
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+
+    &.button-cta__outline {
+        background-color: transparent;
+        border: 1px solid $primary-color;
+        border-color: $primary-color;
+        color: $primary-color;
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+}
