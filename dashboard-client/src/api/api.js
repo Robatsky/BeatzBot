@@ -1,7 +1,3 @@
-export function getUserDetails() {
-    return fetch('http://localhost:3001/api/auth', { credentials: 'include'});
-}
-
 export function updatePrefix(guildId, prefix) {
     return fetch(`http://localhost:3001/api/discord/guilds/${guildId}/prefix`, {
         method: "PUT",

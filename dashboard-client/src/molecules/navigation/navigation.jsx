@@ -9,17 +9,16 @@ import './navigation.scss';
 
 export function Navigation(props) {
 
-    const { isAuthenticated, login, logout } = useContext(UserContext);
+    const { isAuthenticated } = useContext(UserContext);
 
     const handleClick = () => {
         if(isAuthenticated()) {
-            logout();
+            window.location.href = "http://localhost:3001/api/auth/discord/logout";
         } else {
-            login();
+            window.location.href = "http://localhost:3001/api/auth/discord";
         }
     }
 
-    console.log("render");
     return (
         <nav style={{backgroundColor: '#383c41'}}>
             <Link to="/#" className="navbar-brand">

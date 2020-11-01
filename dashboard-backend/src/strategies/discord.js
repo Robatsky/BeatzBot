@@ -18,11 +18,10 @@ passport.use(
         clientID: process.env.AUTH_CLIENT_ID,
         clientSecret: process.env.AUTH_CLIENT_SECRET,
         callbackURL: process.env.AUTH_CALLBACK_URL,
+        passReqToCallback: true,
         scope: ['identify', 'guilds']
-    }, async (accessToken, refreshToken, profile, done) => {
+    }, async (req, accessToken, refreshToken, profile, done) => {
         const { id, username, discriminator, avatar, guilds} = profile;
-        console.log( id, username, discriminator, avatar, guilds);
-
         const findUser = await User.findOneAndUpdate( 
             { 
                 discordId: id
