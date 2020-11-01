@@ -3,7 +3,7 @@ const User = require('../database/schemas/User');
 const Guild = require('../database/schemas/GuildConfig');
 
 const { getBotGuilds } = require('../api/BotService');
-const { getCommonGuilds } = require('../api/GuildService');
+const { markCommonGuilds } = require('../api/GuildService');
 
 router.get('/guilds', async (req, res) => {
     const botGuilds = await getBotGuilds();
@@ -11,7 +11,7 @@ router.get('/guilds', async (req, res) => {
 
     if( user ) {
         const userGuilds = user.get('guilds');
-        const commonGuilds = getCommonGuilds(userGuilds, botGuilds);
+        const commonGuilds = markCommonGuilds(userGuilds, botGuilds);
         res.send(commonGuilds);
     }
 });

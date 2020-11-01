@@ -1,7 +1,13 @@
 const MANAGE_GUILD_PERMISSION = 0x20;
 
-function getCommonGuilds( userGuilds, botGuilds ) {
-    return userGuilds.filter( guild => botGuilds.find(botGuild => (botGuild.id === guild.id) && (guild.permissions & MANAGE_GUILD_PERMISSION === MANAGE_GUILD_PERMISSION)));
+function markCommonGuilds( userGuilds, botGuilds ) {
+    return userGuilds.map( guild => {
+        const hasBeatzBot = botGuilds.find(botGuild => (botGuild.id === guild.id) && (guild.permissions & MANAGE_GUILD_PERMISSION === MANAGE_GUILD_PERMISSION));
+        return {
+            hasBeatzBot: hasBeatzBot,
+            ...guild
+        };
+    });
 }
 
-module.exports = { getCommonGuilds }
+module.exports = { markCommonGuilds }

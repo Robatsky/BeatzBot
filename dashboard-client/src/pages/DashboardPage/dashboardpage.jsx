@@ -1,34 +1,37 @@
 import React, {useState} from 'react';
 import {updatePrefix} from '../../api/api';
+import {useUserGuild} from '../../hooks/UseUserGuild';
 
-export function DashboardPage ( {history, loading} ) {
+import GuildComponent from '../../components/guild/guildComponent';
+import PageWrapper from '../../components/pagewrapper/pagwrapper';
+
+export function DashboardPage ( {history} ) {
 
     const [prefix, setPrefix] = useState("");
-    const [log, setLog] = useState([]);
 
     const submitPrefix = async (event) => {
         event.preventDefault();
         try {
             const result = await updatePrefix("478699121499308032", prefix);
             const {msg} = await result.json();
-            setLog([msg]);
         } catch (err) {
-            setLog([err]);
+            console.log(err);
         }
-    }
+    };
+
+    const [ guilds, error, loading] = useUserGuild();
 
     return (
-        <>
-            { loading && <span>Loading</span>}
-            { !loading && 
-                <div className="dashboard-config">
-                    <form onSubmit={submitPrefix}>
-                        <input id="prefix" placeholder="?" onChange={ (event) => setPrefix(event.target.value)} />
-                        <button type="submit">Submit</button>
-                    </form>
-                </div>
+        <PageWrapper>
+            { loading && 
+                <h1>Loading...</h1>
             }
-            { log.map(e => <div key={{e}}>{e}</div>)}
-        </>
+            { !loading && error &&
+                <h1>error occured ... {error} </h1>
+            }
+            { !loading && !error && guilds &&
+                guilds.map(guild => ( <GuildComponent key={guild.id} {...guild} />))
+            }
+        </PageWrapper>
     )
 }

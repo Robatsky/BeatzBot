@@ -40,9 +40,8 @@ export function Navigation(props) {
                     <NavItem title="Get Premium" to="/menu" type={CALL_TO_ACTION_OUTLINE}/>
                     { isAuthenticated() && 
                         <>
-                            <NavItem className="push-right" title="Manage Servers" to="/dashboard" type={CALL_TO_ACTION}/>
-                            <NavItem title="Logout" 
-                                onClick={handleClick} type={CALL_TO_ACTION} />
+                            <NavItem className="push-right" title="Manage Servers" to="/dashboard" />
+                            <NavItem title="Logout" onClick={handleClick} type={CALL_TO_ACTION} />
                         </>
                     }
                     { !isAuthenticated() &&
