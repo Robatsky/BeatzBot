@@ -1,14 +1,14 @@
 import React from 'react';
 import './button.scss';
 
-export default function Button ( {title, onClick, type, className=""}) {
+export default function Button ( {title, onClick, type}) {
     return (
         <>
             {type === CALL_TO_ACTION && 
-                <button className={`button button-cta ${className}`} onClick={onClick}>{title}</button>
+                <button className={`button button-cta`} onClick={onClick}>{title}</button>
             }
             {type === CALL_TO_ACTION_OUTLINE &&
-                <button className={`button button-cta button-cta__outline ${className}`} onClick={onClick}>{title}</button>
+                <button className={`button button-cta button-cta__outline`} onClick={onClick}>{title}</button>
             }
         </>
     );

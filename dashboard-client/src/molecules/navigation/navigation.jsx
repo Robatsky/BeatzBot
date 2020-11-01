@@ -19,6 +19,8 @@ export function Navigation(props) {
         }
     }
 
+    console.log("auth", isAuthenticated());
+
     return (
         <nav style={{backgroundColor: '#383c41'}}>
             <Link to="/#" className="navbar-brand">
@@ -36,8 +38,19 @@ export function Navigation(props) {
                     <NavItem title="Help" to="/menu" />
                     <NavItem title="Status" to="/menu" />
                     <NavItem title="Get Premium" to="/menu" type={CALL_TO_ACTION_OUTLINE}/>
-                    <NavItem className="push-right" title={ isAuthenticated() ? "Logout" : "Login with Discord"} 
-                        onClick={handleClick} type={CALL_TO_ACTION} />
+                    { isAuthenticated() && 
+                        <>
+                            <NavItem className="push-right" title="Manage Servers" to="/dashboard" type={CALL_TO_ACTION}/>
+                            <NavItem title="Logout" 
+                                onClick={handleClick} type={CALL_TO_ACTION} />
+                        </>
+                    }
+                    { !isAuthenticated() &&
+                        <NavItem className="push-right" title="Login with Discord" 
+                            onClick={handleClick} 
+                            type={CALL_TO_ACTION} />
+                    }
+                    
                 </ul>
             </div>
         </nav>

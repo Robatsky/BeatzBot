@@ -17,10 +17,6 @@ export function DashboardPage ( {history, loading} ) {
         }
     }
 
-    const logout = () => {
-        
-    }
-
     return (
         <>
             { loading && <span>Loading</span>}
@@ -30,7 +26,6 @@ export function DashboardPage ( {history, loading} ) {
                         <input id="prefix" placeholder="?" onChange={ (event) => setPrefix(event.target.value)} />
                         <button type="submit">Submit</button>
                     </form>
-                    <button type="button" onClick={logout}>Logout</button>
                 </div>
             }
             { log.map(e => <div key={{e}}>{e}</div>)}
