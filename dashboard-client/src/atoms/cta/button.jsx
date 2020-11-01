@@ -4,11 +4,11 @@ import './button.scss';
 export default function Button ( {title, onClick, type, className=""}) {
     return (
         <>
-            {type == CALL_TO_ACTION && 
-                <button className={`button button-cta ${className}`}>{title}</button>
+            {type === CALL_TO_ACTION && 
+                <button className={`button button-cta ${className}`} onClick={onClick}>{title}</button>
             }
-            {type == CALL_TO_ACTION_OUTLINE &&
-                <button className={`button button-cta button-cta__outline ${className}`}>{title}</button>
+            {type === CALL_TO_ACTION_OUTLINE &&
+                <button className={`button button-cta button-cta__outline ${className}`} onClick={onClick}>{title}</button>
             }
         </>
     );

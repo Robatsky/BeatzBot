@@ -1,9 +1,9 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 
 export function MenuPage ( { history } ) {
     
     const loading = false;
-    
+
     return (
         <>
             { loading && <span>Loading</span>}

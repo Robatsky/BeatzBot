@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { LandingPage, DashboardPage, MenuPage } from './pages';
+
+import {UserProvider} from './context/UserContext';
 
 import {Navigation} from './molecules';
 import './App.scss';
 
 function App( { history }) {
 
-  const [ user, setUser ] = useState({ user: {}});
-
   return (
-    <>
+    <UserProvider>
       <Navigation />
       <div className="page-wrapper">
           <Switch>
@@ -19,7 +19,7 @@ function App( { history }) {
             <Route path="/menu" exact={true} component={MenuPage} />
           </Switch>
       </div>
-      </>
+    </UserProvider>
   );
 }
 

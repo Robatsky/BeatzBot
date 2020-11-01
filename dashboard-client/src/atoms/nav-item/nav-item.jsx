@@ -7,12 +7,12 @@ import './navItem.scss';
 export default function NavItem ( { to, title, classes=[], type = "nav-item", ...props } ) {
     return (
         <>
-            {type == NAV_ITEM &&
+            {type === NAV_ITEM &&
                 <li className="nav-item">
                     <Link to={to} className={`nav-item${classes.join(" ")}`}>{title}</Link>
                 </li>
             }
-            {type != NAV_ITEM && 
+            {type !== NAV_ITEM && 
                 <Button title={title} type={type} {...props} />
             }
         </>
